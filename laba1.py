@@ -109,13 +109,16 @@ russian_alphabet1 = ['а','б','в','г','д','е','ё','ж','з','и','й','к'
 #russian_alphabet2 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я']
 tablix=[[0]*33 for _ in range(33)]
 
+#тут текст без пробілів
 text_excpiriments=delete_fromtext_probel(text_for_work)
-find_bigram_with_1(text_excpiriments, russian_alphabet1, tablix)
+find_bigram_with_1(text_excpiriments, russian_alphabet1, tablix) #для Н1
 table=work_with_table(russian_alphabet1, tablix)
 print(table)
+
 tablix=[[0]*33 for _ in range(33)]
-find_bigram_with_2(text_excpiriments, russian_alphabet1, tablix)
+find_bigram_with_2(text_excpiriments, russian_alphabet1, tablix) #для Н2
 table=work_with_table(russian_alphabet1, tablix)
 print(table)
+
 fort=frequency_analysis(text_for_work, pomogator, russian_alphabet1)
 find_max(fort, russian_alphabet1)
