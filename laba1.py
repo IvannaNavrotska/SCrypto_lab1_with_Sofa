@@ -45,7 +45,7 @@ def find_bigram_with_1(text, russian, table):
                 k2=j2
                 break
         table[k1][k2]+=1
-        print(text[h:h+2])
+       # print(text[h:h+2])
 
 
 def find_bigram_with_2(text, russian, table):
@@ -60,7 +60,7 @@ def find_bigram_with_2(text, russian, table):
                 k2=j2
                 break
         table[k1][k2]+=1
-        print(text[h:h+2])
+       # print(text[h:h+2])
     
 def work_with_table(russian, tablix):
     table1=PrettyTable()
