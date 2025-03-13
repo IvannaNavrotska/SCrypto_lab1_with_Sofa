@@ -139,10 +139,7 @@ print(f"H2 для тексту з пробілами: {h2:}")
 
     
 #тут текст без пробілів
-tablix=[[0]*33 for _ in range(33)]
-find_bigram_with_1(text_excpiriments, russian_alphabet1, tablix) 
-table=work_with_table(russian_alphabet1, tablix)
-print(table)
+
 
 #визначення ентропії Н1
 freq_list = [0] * len(russian_alphabet1)
@@ -150,11 +147,6 @@ freq_list = frequency_analysis(text_excpiriments, freq_list, russian_alphabet1)
 h1 = find_H1(freq_list)
 print(f"\nH1 для тексту без пробілів: {h1:}")
 
-
-tablix=[[0]*33 for _ in range(33)]
-find_bigram_with_2(text_excpiriments, russian_alphabet1, tablix) 
-table=work_with_table(russian_alphabet1, tablix)
-print(table)
 
 #визначення ентропії Н2
 bigram_list = [[0]*len(russian_alphabet1) for i in range(len(russian_alphabet1))]
