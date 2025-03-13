@@ -73,10 +73,32 @@ def work_with_table(russian, tablix):
 
         
 
+def find_H1(freq_list):
+
+    sum_ = sum(freq_list)
+    h1 = 0.0
+    for i in freq_list:
+        if i > 0:
+            p = i/sum_
+            h1 -= p*math.log2(p)
+    return h1
 
 
+def find_H2(bagram_table):
+
+    sum_ = 0
+    for row in bigram_table:
+        sum_ += sum(row)
+    h2 = 0.0
+    for row in bagram_table:
+        for i in row:
+            if i>0:
+                p = i/sum_
+                h2 -= p*math.log2(p)
+    return h2
 
 
+    
 
 
 
