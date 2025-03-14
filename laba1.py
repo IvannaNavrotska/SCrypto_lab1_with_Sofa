@@ -14,7 +14,7 @@ def frequency_analysis(text, pomogator, russian_alphabet):
 
     return pomogator
 
-def find_max(pomogator, russian_alphbet):
+def find_max(pomogator, russian_alphbet, text):
     for i in range(len(pomogator)):
         max=pomogator[0]
         k=0
@@ -22,7 +22,7 @@ def find_max(pomogator, russian_alphbet):
             if max<pomogator[j]:
                 max=pomogator[j]
                 k=j
-        print(f" Літера \'{russian_alphbet[k]}\' зустрічається в тексті {pomogator[k]} разів", file=file_for_write)
+        print(f" Літера \'{russian_alphbet[k]}\' зустрічається в тексті {pomogator[k]/len(text)} ", file=file_for_write)
         russian_alphbet.pop(k)
         pomogator.pop(k)
 
@@ -106,18 +106,18 @@ def find_H2(bigram_table):
 
 with open("input.txt", "r", encoding="utf-8") as file:
     text_for_work = file.read()
+#print(text_for_work)
 
+pomogator=[0]*34
+russian_alphabet1 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я', ' ']
+russian_alphabet2 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я']
 
-pomogator=[0]*33
-russian_alphabet1 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я']
-#russian_alphabet2 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я']
-text_excpiriments=delete_fromtext_probel(text_for_work)
 
 #текст з пробілами
 tablix=[[0]*33 for _ in range(33)]
-find_bigram_with_1(text_for_work, russian_alphabet1, tablix) #для Н1
-table1=work_with_table(russian_alphabet1, tablix)
-print(table1)
+find_bigram_with_1(text_for_work, russian_alphabet2, tablix) #для Н1
+table1=work_with_table(russian_alphabet2, tablix)
+#print(table1)
 
 #визначення ентропії Н1
 freq_list = [0] * len(russian_alphabet1)
@@ -127,22 +127,23 @@ h11 = find_H1(freq_list)
 
 
 
-tablix=[[0]*33 for _ in range(33)]
-find_bigram_with_2(text_excpiriments, russian_alphabet1, tablix) 
-table2=work_with_table(russian_alphabet1, tablix)
-print(table2)
+
 
 #визначення ентропії Н2
 bigram_list = [[0]*len(russian_alphabet1) for i in range(len(russian_alphabet1))]
 find_bigram_with_1(text_for_work, russian_alphabet1, bigram_list)
 h21 = find_H2(bigram_list)
-print(f"H2 для тексту з пробілами: {h21:}")
+#print(f"H2 для тексту з пробілами: {h21:}")
 
 
     
 #тут текст без пробілів
-
-
+text_excpiriments=delete_fromtext_probel(text_for_work)
+#print(text_for_work)
+tablix=[[0]*33 for _ in range(33)]
+find_bigram_with_2(text_excpiriments, russian_alphabet2, tablix) 
+table2=work_with_table(russian_alphabet2, tablix)
+#print(table2)
 #визначення ентропії Н1
 freq_list = [0] * len(russian_alphabet1)
 freq_list = frequency_analysis(text_excpiriments, freq_list, russian_alphabet1)
@@ -154,7 +155,7 @@ h12 = find_H1(freq_list)
 bigram_list = [[0]*len(russian_alphabet1) for i in range(len(russian_alphabet1))]
 find_bigram_with_1(text_excpiriments, russian_alphabet1, bigram_list)
 h22 = find_H2(bigram_list)
-print(f"H2 для тексту без пробілів: {h22:}")
+#print(f"H2 для тексту без пробілів: {h22:}")
 
 
 fort=frequency_analysis(text_for_work, pomogator, russian_alphabet1)
@@ -167,7 +168,7 @@ with open("output.txt", "a", encoding="utf-8") as file_for_write:
     print(f"H2 для тексту з пробілами: {h21:}", file=file_for_write)
     print(f"\nH1 для тексту без пробілів: {h12:}", file=file_for_write)
     print(f"H2 для тексту без пробілів: {h22:}", file=file_for_write)
-    find_max(fort, russian_alphabet1)
+    find_max(fort, russian_alphabet1, text_for_work)
     
 
 
